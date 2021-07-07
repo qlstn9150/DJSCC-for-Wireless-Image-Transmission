@@ -19,6 +19,7 @@ def normalize_pixels(train_data, test_data):
 	# normalize to range 0-1
 	train_norm = train_norm / 255.0
 	test_norm = test_norm / 255.0
+
 	return train_norm, test_norm
 
 #normalizing the training and test data
@@ -26,6 +27,7 @@ x_train, x_test = normalize_pixels(trainX, testX)
 #compression_ratios = [0.06, 0.09, 0.17, 0.26, 0.34, 0.43, 0.49]
 compression_ratios = [0.06, 0.09, 0.17]
 SNR = [0, 10, 20]
+
 for comp_ratio in compression_ratios:
     tf.keras.backend.clear_session()
     c = Calculate_filters(comp_ratio)

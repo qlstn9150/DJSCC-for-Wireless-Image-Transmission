@@ -33,8 +33,8 @@ def normalize_pixels(train_data, test_data):
 x_train, x_test = normalize_pixels(trainX, testX)
 compression_ratios = [0.06, 0.09, 0.17, 0.26, 0.34, 0.43, 0.49]
 SNR_dB = [0, 10, 20]
-
 snr = 20
+
 def EvaluateModel(x_test, compression_ratios, snr, mode='multiple'):
     if mode=='single':
         tf.keras.backend.clear_session()
@@ -47,6 +47,7 @@ def EvaluateModel(x_test, compression_ratios, snr, mode='multiple'):
         ssim = structural_similarity(testX, pred_images, multichannel=True)
         psnr = compare_psnr(testX, pred_images)
         return pred_images, psnr, ssim
+
     elif mode=='multiple':  
         model_dic = {'SNR':[], 'Pred_Images':[], 'PSNR':[], 'SSIM':[]}
         model_dic['SNR'].append(snr)
@@ -108,6 +109,7 @@ preds['PSNR'].append('PSNR')
 preds['SSIM'].append('SSIM')
 preds['Epoch'].append('Epoch')
 preds['Image'].append(true_img)
+
 for epoch in range(50,epoch_range,epoch_step):
     tf.keras.backend.clear_session()
     path = './CKPT_ByEpochs/CompRatio_{0}SNR{1}/Autoencoder_Epoch_{2}.h5'.format(comp_ratio, snr, epoch)
@@ -139,6 +141,3 @@ for j in range((len(preds['Image'])+2)//plt_step):
     i=i+plt_step        
     fig.axes.get_xaxis().set_visible(False)
     fig.axes.get_yaxis().set_visible(False)
-
-
-    
