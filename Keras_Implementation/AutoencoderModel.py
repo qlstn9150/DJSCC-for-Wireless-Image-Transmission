@@ -8,7 +8,7 @@ Wrapper File for 1. Compute pwr combined (Real, Imag), (Extract R & I parts) Gen
 
 from keras.layers import Conv2D, Layer, Input, Conv2DTranspose, UpSampling2D, Cropping2D
 #from keras.optimizers import Adam
-from tensorflow.python.keras.optimizers import *
+from keras.optimizers import adam_v2
 from keras.layers.advanced_activations import PReLU
 from keras.models import Model
 import keras
