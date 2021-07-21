@@ -7,8 +7,8 @@ Wrapper File for 1. Compute pwr combined (Real, Imag), (Extract R & I parts) Gen
 """
 
 from keras.layers import Conv2D, Layer, Input, Conv2DTranspose, UpSampling2D, Cropping2D
-#from keras.optimizers import Adam
-from keras.optimizers import adam_v2
+from keras.optimizers import Adam
+#from keras.optimizers import adam_v2
 from keras.layers.advanced_activations import PReLU
 from keras.models import Model
 import keras
@@ -25,7 +25,6 @@ class NormalizationNoise(Layer): #from keras.layers
         super(NormalizationNoise, self).__init__(**kwargs)
 
     def call(self, z_tilta): 
-        #레이어 이름별로 범위 나눔
         with tf.name_scope('Normalization_Layer'):
 
             z_tilta = tf.dtypes.cast(z_tilta, dtype='complex128', name='ComplexCasting')+1j ###1j??  #복소수형으로 변환
