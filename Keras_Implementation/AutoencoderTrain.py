@@ -30,5 +30,4 @@ for comp_ratio in compression_ratios:
     tf.keras.backend.clear_session()
     c = Calculate_filters(comp_ratio)
     print('---> System Will Train, Compression Ratio: '+str(comp_ratio)+'. <---')
-    #_ = TrainAutoEncoder(x_train, x_test, nb_epoch=750, comp_ratio=comp_ratio, batch_size=16, c=c, snr=10, saver_step=50)
-    _ = TrainAutoEncoder(x_train, x_test, nb_epoch=5, comp_ratio=comp_ratio, batch_size=6, c=c, snr=30, saver_step=1)
+    _ = TrainAutoEncoder(x_train, x_test, nb_epoch=750, comp_ratio=comp_ratio, batch_size=16, c=c, snr=10, saver_step=50)
