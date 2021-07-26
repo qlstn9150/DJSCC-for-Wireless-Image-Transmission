@@ -98,11 +98,14 @@ snr_lst=[10]
 history = plot_model(x_test, compression_ratios, snr_lst, title='AWGN Channel', x_lablel='k/n', y_label='PSNR (dB)')  
 
 
-#model_dic = EvaluateModel(x_test, compression_ratios, snr, mode='multiple')
-#markers = ["*", "s", "o", "X", "d", "v", "<", ">", "^", "P", "H", "|"]
-#colors = ['#800080', '#FF00FF', '#000080', '#008080', '#00FFFF', '#008000', '#00FF00', '#808000', '#FF0000', '#800000', '#000000', '#000080']
-#plt.plot(compression_ratios, model_dic['PSNR'], ls = '--', c = 'm', marker = 'o')
+'''
+model_dic = EvaluateModel(x_test, compression_ratios, snr, mode='multiple')
+markers = ["*", "s", "o", "X", "d", "v", "<", ">", "^", "P", "H", "|"]
+colors = ['#800080', '#FF00FF', '#000080', '#008080', '#00FFFF', '#008000', '#00FF00', '#808000', '#FF0000', '#800000', '#000000', '#000080']
+plt.plot(compression_ratios, model_dic['PSNR'], ls = '--', c = 'm', marker = 'o')
+'''
 
+'''
 j=6          
 test_img=np.array([x_test[j]])
 true_img=testX[j]
@@ -149,3 +152,4 @@ for j in range((len(preds['Image'])+2)//plt_step):
     i=i+plt_step        
     fig.axes.get_xaxis().set_visible(False)
     fig.axes.get_yaxis().set_visible(False)
+'''
