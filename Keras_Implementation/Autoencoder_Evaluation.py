@@ -13,7 +13,7 @@ from AutoencoderModel import NormalizationNoise
 from keras.datasets import cifar10
 from keras import backend as K
 from skimage.metrics import structural_similarity
-#rom skimage.measure import compare_psnr 
+#from skimage.measure import compare_psnr 
 from skimage.metrics import peak_signal_noise_ratio
 from matplotlib import pyplot as plt
 import h5py
@@ -105,24 +105,25 @@ def snr_plot(x_test, compression_ratio, snr_train, title, x_lablel, y_label):
     return history
 
 
-
+'''
 compression_ratios = [0.06, 0.17, 0.34, 0.49]
 snr_train=[0, 10, 20]
 history = comp_plot(x_test, compression_ratios, snr_train, title='AWGN Channel', x_lablel='k/n', y_label='PSNR (dB)') 
-
-
-#snr_train=[1, 4, 7, 13, 19]
-snr_test=[2,4,7,10,13,16,18,22,25,27]
-comp_ratio = 0.06
-history2 = snr_plot(x_test, comp_ratio, snr_train, title='AWGN Channel', x_lablel='SNR_test (dB)', y_label='PSNR (dB)') 
-
 '''
+'''
+snr_train=[10,20]
+snr_test=[2,4,7,10,13,16,18,22,25,27]
+comp_ratio = 0.17
+history2 = snr_plot(x_test, comp_ratio, snr_train, title='AWGN Channel', x_lablel='SNR_test (dB)', y_label='PSNR (dB)') 
+'''
+
 j=6          
 test_img=np.array([x_test[j]])
 true_img=testX[j]
-comp_ratio=0.06
+comp_ratio=0.17
 epoch_range=550
 epoch_step=50
+snr=10
 
 preds = {'SNR':[], 'PSNR':[], 'SSIM':[], 'Epoch':[], 'Image':[]}
 
@@ -139,11 +140,12 @@ for epoch in range(50,epoch_range,epoch_step):
     pred_images = autoencoder.predict(test_img)[0]*255
     pred_images = pred_images.astype('uint8')
     preds['SNR'].append(snr)
-    preds['PSNR'].append(compare_psnr(true_img, pred_images))
+    preds['PSNR'].append(peak_signal_noise_ratio(true_img, pred_images))
     preds['SSIM'].append(structural_similarity(true_img, pred_images, multichannel=True))
     preds['Epoch'].append(epoch)
     preds['Image'].append(pred_images)
 
+snr_lst = [10,20]
 col=epoch_range//epoch_step+1 
 rows=len(snr_lst)    
 i=0 
@@ -157,9 +159,10 @@ for j in range((len(preds['Image'])+2)//plt_step):
     if i%col==0:
         plt.title(str(preds['PSNR'][i])+'/'+str(preds['SSIM'][i]))
         plt.ylabel('SNR {0} dB'.format(preds['SNR'][i]))
+        plt.show()
     else:
         plt.title(str(int(preds['PSNR'][i]))+'/{0:.3f}'.format(preds['SSIM'][i]))
+        plt.show()
     i=i+plt_step        
     fig.axes.get_xaxis().set_visible(False)
     fig.axes.get_yaxis().set_visible(False)
-    '''
