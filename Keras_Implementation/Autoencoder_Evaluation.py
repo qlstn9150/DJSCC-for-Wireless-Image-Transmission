@@ -107,7 +107,7 @@ def snr_plot(x_test, compression_ratio, snr_train, title, x_lablel, y_label):
 
 
 compression_ratios = [0.06, 0.17, 0.34, 0.49]
-snr_train=[10, 20]
+snr_train=[0, 10, 20]
 history = comp_plot(x_test, compression_ratios, snr_train, title='AWGN Channel', x_lablel='k/n', y_label='PSNR (dB)') 
 
 
